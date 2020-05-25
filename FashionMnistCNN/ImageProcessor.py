@@ -46,16 +46,16 @@ def transform_image(image):
 
 def get_class(class_id):
     return {
-        0: "t-shirt/top",
+        0: "a t-shirt/top",
         1: "a pair of trousers",
-        2: "pullover",
-        3: "dress",
-        4: "coat",
-        5: "sandal",
-        6: "shirt",
-        7: "sneaker",
-        8: "bag",
-        9: "ankle boot",
+        2: "a pullover",
+        3: "a dress",
+        4: "a coat",
+        5: "a sandal",
+        6: "a shirt",
+        7: "a sneaker",
+        8: "a bag",
+        9: "an ankle boot",
     }[class_id]
 
 
