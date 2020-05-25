@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import filedialog
 
 from PIL import ImageTk, Image
+from FashionMnistCNN.ImageProcessor import process_image
 
 
 class UserInterface:
@@ -31,14 +32,14 @@ class UserInterface:
 
     def set_image_and_label(self):
         filename = filedialog.askopenfilename(title='Open image')
-        image = self.open_image(filename)
-        self.image_panel.configure(image=image)
-        self.image_panel.image = image
-        label = 'Hey, I\'m new here'  # TODO: Add image recognition here
+        image = Image.open(filename)
+        image_to_display = self.resize_image(image)
+        self.image_panel.configure(image=image_to_display)
+        self.image_panel.image = image_to_display
+        label = "This is " + process_image(image)
         self.image_label.configure(text=label)
 
-    def open_image(self, file):
-        image = Image.open(file)
+    def resize_image(self, image):
         image = image.resize((250, 250), Image.ANTIALIAS)
         image = ImageTk.PhotoImage(image)
         return image
