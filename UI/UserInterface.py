@@ -1,7 +1,8 @@
+from threading import Thread
 from tkinter import *
 from tkinter import filedialog
-
 from PIL import ImageTk, Image
+
 from FashionMnistCNN.ImageProcessor import ImageProcessor
 
 
@@ -33,7 +34,8 @@ class UserInterface:
 
     def process_image(self):
         image = self.load_image()
-        self.recognize_image(image)
+        self.image_label.configure(text='Recognizing...')
+        Thread(target=self.recognize_image, args=(image,)).start()
 
     def load_image(self):
         filename = filedialog.askopenfilename(title='Open image')
