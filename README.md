@@ -22,7 +22,9 @@ First make a copy of notebook by clicking _File → Save a copy..._ or switch to
 _Open in playground_. Then choose _Runtime → Run all_ or press _Ctrl + F9_. After training the model can 
 be saved on your Google Drive by clicking on link in the last cell and pasting the verification code.
 
-<img src="Screenshots/GoogleDriveModel.png" align="center">
+<p align="center">
+<img src="Screenshots/GoogleDriveModel.png">
+</p>
 
 ### UI
 The project uses Conda package manager. To create the environment follow the steps below using 
@@ -44,4 +46,6 @@ After activating the environment just run _/UI/**UserInterface.py**_. You can sw
 by changing _model.pth_ in _Data_ folder.
 
 ## Screenshots
-<img src="Screenshots/UI.png" align="center">
+<p align="center">
+<img src="Screenshots/UI.png">
+</p>
