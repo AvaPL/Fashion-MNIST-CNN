@@ -2,18 +2,19 @@ from tkinter import *
 from tkinter import filedialog
 
 from PIL import ImageTk, Image
-from FashionMnistCNN.ImageProcessor import process_image
+from FashionMnistCNN.ImageProcessor import ImageProcessor
 
 
 class UserInterface:
-    def __init__(self, root):
+    def __init__(self, root, image_processor):
         self.root = root
         self.button = self.create_open_image_button()
         self.image_panel = self.create_image()
         self.image_label = self.create_label()
+        self.image_processor = image_processor
 
     def create_open_image_button(self):
-        button = Button(self.root, text='Open image', command=self.set_image_and_label)
+        button = Button(self.root, text='Open image', command=self.process_image)
         button.pack(padx=10, pady=5)
         return button
 
@@ -30,17 +31,24 @@ class UserInterface:
     def mainloop(self):
         self.root.mainloop()
 
-    def set_image_and_label(self):
+    def process_image(self):
+        image = self.load_image()
+        self.recognize_image(image)
+
+    def load_image(self):
         filename = filedialog.askopenfilename(title='Open image')
         image = Image.open(filename)
         image_to_display = self.resize_image(image)
         self.image_panel.configure(image=image_to_display)
         self.image_panel.image = image_to_display
-        label = "This is " + process_image(image)
+        return image
+
+    def recognize_image(self, image):
+        label = "This is " + image_processor.process_image(image)
         self.image_label.configure(text=label)
 
     def resize_image(self, image):
-        image = image.resize((250, 250), Image.ANTIALIAS)
+        image = image.resize((252, 252), Image.NEAREST)
         image = ImageTk.PhotoImage(image)
         return image
 
@@ -50,5 +58,7 @@ root.title('Fashion MNIST CNN')
 root.geometry("280x350+600+300")
 root.resizable(width=True, height=True)
 
-user_interface = UserInterface(root)
+image_processor = ImageProcessor('../Data/model.pth')
+
+user_interface = UserInterface(root, image_processor)
 user_interface.mainloop()
