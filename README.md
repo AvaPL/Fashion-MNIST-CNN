@@ -9,6 +9,7 @@ Images can be loaded and recognized by using a simple user interface.
 * **Bartosz Starosta**
 
 ## Built with
+* [PyTorch](https://pytorch.org/)
 * [Google Colab](https://colab.research.google.com/)
 * [JetBrains PyCharm](https://www.jetbrains.com/pycharm/)
 * [Sourcetree](https://www.sourcetreeapp.com/)
